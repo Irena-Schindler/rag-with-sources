@@ -1,0 +1,16 @@
+- q: How much clearance does the outdoor unit need in front of the fan?
+  source: installation.md#Location
+- q: Which circuit breaker does the heat pump require?
+  source: installation.md#Electrical connection
+- q: What heating curve slope is recommended for underfloor heating?
+  source: operation.md#Heating curve
+- q: What does error E31 mean?
+  source: errors.md#E31 – Outdoor sensor
+- q: How loud is the unit in quiet mode?
+  source: operation.md#Quiet mode
+- q: What should I do when the defrost failure error appears?
+  source: errors.md#E45 – Defrost failure
+- q: What temperature does the legionella program reach?
+  source: operation.md#Hot water
+- q: Who won the football world cup in 2014?
+  source: null
