@@ -71,7 +71,7 @@ class Index:
         points = []
         for i, ((src, text), v) in enumerate(zip(pairs, vecs)):
             self.chunks[i] = Chunk(i, src, text)
-            points.append(PointStruct(id=i, vector=v.tolist(), payload={"source": src}))
+            points.append(PointStruct(id=i, vector=v.tolist(), payload={"source": src, "text": text}))
         self.db.upsert(self.col, points=points)
         return len(points)
 
@@ -79,4 +79,5 @@ class Index:
     def search(self, query: str, k: int = 3) -> list[tuple[Chunk, float]]:
         v = self.emb.embed([query])[0].tolist()
         hits = self.db.query_points(self.col, query=v, limit=k).points
-        return [(self.chunks[h.id], h.score) for h in hits]
+        # text comes from the vector store payload, so a persistent Qdrant server works after a restart
+        return [(Chunk(h.id, h.payload["source"], h.payload["text"]), h.score) for h in hits]

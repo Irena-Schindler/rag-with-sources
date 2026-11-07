@@ -37,3 +37,8 @@ def test_llm_refusal_is_respected(idx):
 def test_citation_validator():
     assert validate_citations("A [1] and B [2]", 3)
     assert not validate_citations("No citation", 3)
+
+
+def test_search_reads_text_from_store_not_memory(idx):
+    idx.chunks.clear()  # simulate a fresh process attached to an existing collection
+    assert idx.search("error E31", 1)[0][0].source == "errors.md#E31 – Outdoor sensor"
